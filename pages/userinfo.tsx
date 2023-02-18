@@ -1,3 +1,4 @@
+import DropdownBox from "@/component/DropdownBox";
 import Tab from "@/component/Tab";
 import Link from "next/link"
 import { useState } from "react"
@@ -27,6 +28,25 @@ const User=()=>{
                 key: 'tab-change password',
                 children:<Password/>
             }
+        ]}/>
+
+        <DropdownBox 
+        options={[
+            {
+                title:'Language',
+                key:'language',
+                children:<LanguageOPt/>
+            },
+            {
+                title:'Address',
+                key:'address',
+                children:<Address/>
+            },
+            {
+                title:'Home',
+                key:'home',
+                children:<Home/>
+            },
         ]}/>
         </div>
         
@@ -63,6 +83,39 @@ const Password=()=>{
                     <button className=" border-red-600  bg-red-600 rounded p-2 font-bold mt-5">Cancel</button>
 
                 </div>
+        </div>
+    )
+}
+
+const LanguageOPt=()=>{
+    return(
+        <div className=" border  w-24">
+            <a href="">Nepal</a> <br />
+            <a href="">English</a><br />
+            <a href="">Hindi</a> 
+        </div>
+        )
+}
+
+const Address=()=>{
+    return(
+        <div className=" border ml-[5.5rem] w-24">
+            <a href="">Kathmandu</a><br />
+            <a href="">Bhaktapur</a><br />
+            <a href="">Lalitpur</a><br />
+            <a href="">Kritipur</a>
+            
+        </div>
+    )
+}
+
+const Home=()=>{
+    return(
+        <div className=" border ml-[10rem] w-24"> 
+            <a href="">About</a><br />
+            <a href="">Contact Us</a><br />
+            <a href="">Home</a>
+            
         </div>
     )
 }
