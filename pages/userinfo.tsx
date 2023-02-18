@@ -1,3 +1,4 @@
+import Tab from "@/component/Tab";
 import Link from "next/link"
 import { useState } from "react"
 import {HiUserCircle} from 'react-icons/Hi';
@@ -10,58 +11,58 @@ const user=()=>{
 
 export default user
 
-// const breadCrumb:{title:string,link:string}[]=[
-//     {
-//         title:'Own Profile',
-//         link:'/profile'
-//     },
-//     {
-//         title:'Change Password',
-//         link:'/password'
-//     },
-// ]
 
 const User=()=>{
-
-    const [state,setState]=useState(1);
-
-    const toggle = (index) =>{
-        setState(index);
-    }
     return (
-        <div>
-            <h1 className="p-5 font-serif text-3xl font-black">User Profile</h1>
-            <div className="tabs w-[50%]  ml-10  inline-flex grid-cols-2 gap-4 ">
-                <div className={`cursor-pointer  p-2 font-bold ${(state === 1 ? ' border-2 rounded-t-lg border-t-orange-600 tab active-tab' : 'tab')}`} onClick={()=>toggle(1)} >Own Profile</div>
-                <div className={`tab cursor-pointer p-2 font-bold ${(state === 2 ? ' border-2 rounded-t-lg border-t-orange-600 tab active-tab' : 'tab')}`} onClick={()=>toggle(2)}>Change Password</div>
-            </div>
-            <div className="contentt  w-[100%] ml-10  inline-flex gap-2 ">
-              <div className={`p-5 w-[100%]  font-bold ${(state === 1 ? 'content active-content flex border' : 'content')}`} >
-                   <div className="w-[25%]">
-                        <span><HiUserCircle size={100}/></span>
-                   </div> 
-                   <div className=" w-[100%] mt-3">
-                        <h1 className=" p-2 text-base ">Personal Information</h1>
-                        <div className="p-2 flex  gap-16 ">
-                            <h5>Super Admin</h5>
-                            <h5>Gaushala</h5>
-                            <h5>Admin</h5>
-                        </div>
-                   </div>
-              </div>
-              <div className={`p-5 w-[100%] content invisible border flex font-bold ${(state === 2 ? 'content active-content invisible' : ' visible content')}`} >  
-                  <div className=" w-[100%]">
-                        <h1 className=" p-2 text-base ">Password</h1>
-                        <div className="flex gap-16 ">
-                            <h2>Admin</h2>
-                            <h2 placeholder="Enter new password"></h2>
-                            <h2 placeholder="Re-Enter new password"></h2>
-                        </div>
-                   </div>
-              </div>
-            </div>
-            
+        <div>            
+            <Tab 
+            options={[
+            { 
+                title: 'Own Profile',
+                key:'tab-profile',
+                children:<Profile/>
+            },
+            {
+                title:'Change Password',
+                key: 'tab-change password',
+                children:<Password/>
+            }
+        ]}/>
         </div>
         
+    )
+}
+
+const Profile=()=>{
+    return(
+        <div className={`p-5 w-[50%] flex border font-bold bg-slate-400`} >
+            <div className="w-[25%]">
+                <span><HiUserCircle size={100}/></span>
+            </div> 
+        <div className=" w-[100%] mt-3">
+             <h1 className=" p-2 text-lg underline ">Personal Information</h1>
+             <div className="p-2 flex  gap-16 ">
+                 <h5>Super Admin</h5>
+                 <h5>Gaushala</h5>
+                 <h5>Admin</h5>
+             </div>
+        </div>
+        </div>
+    )
+}
+
+const Password=()=>{
+    return(
+        <div className={`p-5 w-[50%] flex border rounded  text-center bg-slate-400`}>
+                <div className=" ml-40">
+                    <h1 className=" p-2 text-lg underline font-bold  ">Change Password</h1> <br/>
+                    <input type="text" placeholder="Old Password" className=" text-center border rounded p-2 w-[15rem] " /> <br />
+                    <input type="text" placeholder="New Password" className="text-center border rounded mt-4 p-2 w-[15rem]" /> <br />
+                    <input type="text" placeholder="Re-Type New Password" className="text-center border rounded mt-4 mb-5 p-2 w-[15rem]"/> <br />
+                    <button className=" border-green-600 bg-green-600 rounded p-2 font-bold">Save Changes</button><br />
+                    <button className=" border-red-600  bg-red-600 rounded p-2 font-bold mt-5">Cancel</button>
+
+                </div>
+        </div>
     )
 }
