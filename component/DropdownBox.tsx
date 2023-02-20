@@ -1,50 +1,55 @@
-import React,{ReactNode,useState,Fragment,useEffect,} from 'react'
+import React,{ReactNode,useState,Fragment,useEffect, useRef,} from 'react'
+// import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
 
 
 export interface DropdownOption{
-    title:string;
-    key:string | number;
-    children: ReactNode;
+    value:string;
+    key:string;
 }
 
-interface ButtonProps{
-    readonly options?:DropdownOption[];
-    readonly containerClassName?: string;
-    onButtonChange?:(key: string |number) =>void
+interface Props{
+    placeholder: string;
+    options: DropdownOption[];
+    onSelect?: (activeOption: DropdownOption) =>void
 }
 
-const DropdownBox = ({containerClassName,options,onButtonChange}:ButtonProps) => {
-    const [option]=useState<DropdownOption[]>(options || [])
-    const [activeButton,setActiveButton]=useState<DropdownOption>(option[0])
+const DropdownBox = ({placeholder,options,onSelect}:Props) => {
+    const [activeOpt,setctiveOPt]=useState<DropdownOption>();
+    const [show,setShow]=useState(false);
+    const ref= useRef<HTMLDivElement>(null);
+
+    const handleClick=(e:MouseEvent) =>{
+        if(ref.current && !ref.current.contains(e?.target as Node)){
+            setShow(false);
+        }
+    }
     useEffect(()=>{
-            if(onButtonChange){
-                onButtonChange(activeButton.key)
-            }
-    })
+            document.addEventListener("click",handleClick)
+            return()=>{
+                document.removeEventListener("click",handleClick)
+            };
+    },[ref]);
   return (
-    <div className={`${containerClassName} mt-5`}>
-      <div className='m-5'>
-            {
-                option.map((data,i)=>{
-                    return(
-                        <button type='button' onClick={() =>{ setActiveButton (data)}} title={data.key as string} key={i} className={`${data.key ==activeButton.key }' p-2 border rounded'`}>{data.title}</button>
-                        )
-                })
-            }
+    <div ref={ref} className={`mt-5`}>
+      <div className='m-5' onClick={()=>setShow(!show)}>
+            <button type='button' className={`' p-2 border rounded'`}>{activeOpt?.key || placeholder}</button>
+            {/* <span>{a}</span> */}
       </div>
-      {
-        option.map((data,i)=>{
-            return (
-                <Fragment>
-                    {
-                        activeButton.key == data.key &&
-                        <div key={i}>
-                           {data.children}
-                        </div>
-                    }
-                </Fragment>
-            )
-        })
+      {show ? (
+        <div >
+            <div>
+                {options.map((data,i)=>{
+                    return(
+                        <div key={i} onClick={()=>{
+                            setctiveOPt(data);
+                            setShow(false);
+                            onSelect && onSelect(data);
+                        }} >{data.key}</div>
+                    );
+                })}
+            </div>
+        </div>
+      ) : null
       }
     </div>
   )

@@ -29,25 +29,43 @@ const User=()=>{
                 children:<Password/>
             }
         ]}/>
-
+        <div className="flex">
         <DropdownBox 
         options={[
             {
-                title:'Language',
-                key:'language',
-                children:<LanguageOPt/>
+                key:'Nepali',
+                value:'nepali'       
+           },
+            {
+                key:'English',
+                value:'english'
             },
             {
-                title:'Address',
-                key:'address',
-                children:<Address/>
+                key:'Hindi',
+                value:'hindi'
+            }
+            ]}
+            placeholder="Language"
+            />
+            <DropdownBox 
+        options={[
+            {
+                key:'Nepal',
+                value:'nepal'       
+           },
+            {
+                key:'India',
+                value:'india'
             },
             {
-                title:'Home',
-                key:'home',
-                children:<Home/>
-            },
-        ]}/>
+                key:'China',
+                value:'china'
+            }
+            ]}
+            placeholder="Country"
+            />
+        </div>
+        
         </div>
         
     )
@@ -87,35 +105,3 @@ const Password=()=>{
     )
 }
 
-const LanguageOPt=()=>{
-    return(
-        <div className=" border  w-24">
-            <a href="">Nepal</a> <br />
-            <a href="">English</a><br />
-            <a href="">Hindi</a> 
-        </div>
-        )
-}
-
-const Address=()=>{
-    return(
-        <div className=" border ml-[5.5rem] w-24">
-            <a href="">Kathmandu</a><br />
-            <a href="">Bhaktapur</a><br />
-            <a href="">Lalitpur</a><br />
-            <a href="">Kritipur</a>
-            
-        </div>
-    )
-}
-
-const Home=()=>{
-    return(
-        <div className=" border ml-[10rem] w-24"> 
-            <a href="">About</a><br />
-            <a href="">Contact Us</a><br />
-            <a href="">Home</a>
-            
-        </div>
-    )
-}
