@@ -523,14 +523,6 @@ video {
   margin-left: 10rem;
 }
 
-.ml-\[10rem\] {
-  margin-left: 10rem;
-}
-
-.ml-\[5\.5rem\] {
-  margin-left: 5.5rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -545,10 +537,6 @@ video {
 
 .flex {
   display: flex;
-}
-
-.w-24 {
-  width: 6rem;
 }
 
 .w-\[100\%\] {

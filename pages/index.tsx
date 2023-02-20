@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useState } from 'react'
+import Accordian from '@/component/Accordian'
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +23,14 @@ const Home=()=>{
       setState(!state);
   }
   return(
-    <button className={`${(state ? 'bg-red-500' : 'bg-green-500')}  p-5`} onClick={toggleButton}>{state ? 'InActive' : 'Active'}</button>
+   <div>
+    <div>
+      <button className={`${(state ? 'bg-red-500' : 'bg-green-500')}  p-5`} onClick={toggleButton}>{state ? 'InActive' : 'Active'}</button>
+        {/* to display paragraph when user click on questions */}
+      <Accordian/>
+    </div>
+
+   </div>
   )
 }
 
