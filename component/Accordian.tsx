@@ -1,31 +1,23 @@
 import React, { useState } from 'react'
-import accordionData from '../data/accordian.data'
 
-const Accordian = () => {
-    const [data,setData]=useState(accordionData);
+interface Props{
+    question:string;
+    answer:string;
+}
+
+const Accordian = ({question,answer} : Props) => {
     const [show,setShow]=useState(false);
   return (
     <>
-    <div className='  mt-5 ml-10 p-5' >
-        <h1 className=' text-xl font-bold '>Accordion(Interview Questions) </h1>
+    <div className=' mt-3 p-5' >
         <div>
-        {
-            data.map((data,i)=>{
-                return(
-                    <div>
-                    <div className=' flex' key={i}>
-                        <p className='' onClick={()=>setShow(!show)}>+</p>
-                        <h1>{data.question}</h1>
-                    </div>
+            <div className=' flex justify-between bg-slate-200 p-2 items-center ' >
+                <h1>{question}</h1>
+                <span onClick={() =>setShow((show) => !show)} className=' text-3xl font-bold '>{show ? '-' :'+'}</span>
+            </div>
                     {
-                        show && <p key={i}>{data.answer}</p>
+                        show && <p className=' bg-slate-400 p-4' >{answer}</p>
                     }
-                        
-                    </div>
-                    
-                )
-            })
-        }
         </div>
     </div>
     </>
